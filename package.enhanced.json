@@ -1,0 +1,58 @@
+{
+  "name": "Sweet Apocalypse Comic Factory",
+  "version": "2.0.0",
+  "description": "Hands-off Sweet Apocalypse comic generation with RAG, LoRA training, and batch processing",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8080",
+    "build": "npm run build:web && npm run build:api",
+    "build:web": "webpack --mode production",
+    "build:api": "tsc",
+    "start": "npm run build && npm run dev",
+    "install:local": "npm install && python setup_local.py",
+    "deploy:hf": "npm run build && python deploy_huggingface.py",
+    "deploy:replicate": "npm run build && python deploy_replicate.py"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2",
+    "ws": "^8.14.2",
+    "uuid": "^9.0.1",
+    "sharp": "^0.32.6",
+    "pdf-parse": "^1.1.1",
+    "mammoth": "^1.6.0",
+    "node-nlp": "^2.2.0",
+    "compromise": "^0.0.1",
+    "natural": "^6.8.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "html-webpack-plugin": "^5.5.3",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "typescript": "^5.2.2",
+    "ts-loader": "^9.4.3",
+    "@types/node": "^20.8.7",
+    "@types/express": "^4.17.20",
+    "@types/multer": "^1.4.9",
+    "@types/cors": "^2.8.15",
+    "@types/ws": "^8.5.8",
+    "@types/uuid": "^9.0.6"
+  },
+  "keywords": [
+    "ai",
+    "comic",
+    "generation",
+    "sweet-apocalypse",
+    "lora",
+    "training",
+    "rag",
+    "ollama",
+    "comfyui"
+  ],
+  "author": "Sweet Apocalypse Creator",
+  "license": "MIT"
+}

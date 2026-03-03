@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Apocalypse Comic Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .sweet-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .apocalypse-gradient {
+            background: linear-gradient(135deg, #4a00e0 0%, #8e2de2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div id="app" class="min-h-screen">
+        <!-- Header -->
+        <header class="gradient-bg p-6 shadow-lg">
+            <div class="container mx-auto">
+                <h1 class="text-4xl font-bold flex items-center gap-3">
+                    <span class="text-5xl">🍬</span>
+                    Sweet Apocalypse Comic Factory
+                    <span class="text-5xl">⚡</span>
+                </h1>
+                <p class="text-purple-100 mt-2">Hands-off AI comic generation with RAG, LoRA training & batch processing</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto p-6">
+            <!-- Status Bar -->
+            <div class="bg-gray-800 rounded-lg p-4 mb-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span id="status">Ready</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="database" class="w-4 h-4"></i>
+                            <span id="rag-docs">0 RAG docs</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-4 h-4"></i>
+                            <span id="model-status">Models: Disconnected</span>
+                        </div>
+                    </div>
+                    <button onclick="oneClickInstall()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg flex items-center gap-2">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        One-Click Install
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="bg-gray-800 rounded-lg p-2 mb-6">
+                <div class="flex gap-2">
+                    <button onclick="switchTab('generate')" class="tab-btn px-4 py-2 rounded-lg bg-purple-600" data-tab="generate">
+                        <i data-lucide="play" class="w-4 h-4 inline mr-2"></i>Generate
+                    </button>
+                    <button onclick="switchTab('train')" class="tab-btn px-4 py-2 rounded-lg hover:bg-gray-700" data-tab="train">
+                        <i data-lucide="layers" class="w-4 h-4 inline mr-2"></i>Train LoRA
+                    </button>
+                    <button onclick="switchTab('models')" class="tab-btn px-4 py-2 rounded-lg hover:bg-gray-700" data-tab="models">
+                        <i data-lucide="image" class="w-4 h-4 inline mr-2"></i>Models
+                    </button>
+                    <button onclick="switchTab('settings')" class="tab-btn px-4 py-2 rounded-lg hover:bg-gray-700" data-tab="settings">
+                        <i data-lucide="settings" class="w-4 h-4 inline mr-2"></i>Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Generate Tab -->
+            <div id="generate-tab" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Input Panel -->
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                            Story Input
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Upload Document (Optional)</label>
+                                <input type="file" id="document-upload" accept=".pdf,.md,.docx,.txt" 
+                                    class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Custom Prompt</label>
+                                <textarea id="custom-prompt" rows="4" placeholder="Enter your Sweet Apocalypse story prompt..."
+                                    class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Number of Pages</label>
+                                <select id="num-pages" class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600">
+                                    <option value="2">2 Pages</option>
+                                    <option value="4" selected>4 Pages</option>
+                                    <option value="6">6 Pages</option>
+                                    <option value="8">8 Pages</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Style</label>
+                                <select id="style-lora" class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600">
+                                    <option value="sweetapoc-v1">Sweet Apocalypse v1</option>
+                                    <option value="sweetapoc-v2">Sweet Apocalypse v2</option>
+                                    <option value="user-trained">User Trained Style</option>
+                                </select>
+                            </div>
+
+                            <button onclick="startGeneration()" class="w-full sweet-gradient text-white font-bold py-3 rounded-lg hover:opacity-90">
+                                <i data-lucide="play" class="w-5 h-5 inline mr-2"></i>
+                                Generate Comic Issue
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Progress Panel -->
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                            Generation Progress
+                        </h2>
+
+                        <div id="progress-section" class="space-y-4">
+                            <div class="text-center text-gray-400 py-8">
+                                <i data-lucide="file-image" class="w-16 h-16 mx-auto mb-4 opacity-50"></i>
+                                <p>Ready to generate your Sweet Apocalypse comic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Train Tab -->
+            <div id="train-tab" class="tab-content hidden">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                        Train Custom Art Style LoRA
+                    </h2>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Upload Art Images (10-100 images)</label>
+                            <input type="file" id="art-images" multiple accept="image/*" 
+                                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600">
+                            <p class="text-sm text-gray-400 mt-2">Upload your art style images for LoRA training</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Style Description</label>
+                            <textarea id="style-description" rows="4" placeholder="Describe your art style..."
+                                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600"></textarea>
+                        </div>
+                    </div>
+
+                    <button onclick="startTraining()" class="mt-6 apocalypse-gradient text-white font-bold py-3 rounded-lg hover:opacity-90">
+                        <i data-lucide="zap" class="w-5 h-5 inline mr-2"></i>
+                        Start LoRA Training
+                    </button>
+                </div>
+            </div>
+
+            <!-- Models Tab -->
+            <div id="models-tab" class="tab-content hidden">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="image" class="w-5 h-5"></i>
+                        Model Management
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <h3 class="font-bold mb-2">Text Models</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span>Qwen 2.5 7B</span>
+                                    <span class="text-green-400">✓ Ready</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Llama 3.1 8B</span>
+                                    <span class="text-yellow-400">⚡ Available</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <h3 class="font-bold mb-2">Image Models</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span>Qwen2-VL 7B</span>
+                                    <span class="text-green-400">✓ Ready</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>SDXL Base</span>
+                                    <span class="text-yellow-400">⚡ Available</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <h3 class="font-bold mb-2">LoRAs</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span>SweetApoc v1</span>
+                                    <span class="text-green-400">✓ Active</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>User Style</span>
+                                    <span class="text-gray-400">○ Not trained</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content hidden">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                        Pipeline Settings
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold mb-4">Ollama Configuration</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Base URL</label>
+                                    <input type="text" id="ollama-url" value="http://localhost:11434" 
+                                        class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600">
+                                </div>
+                                <button onclick="testOllama()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg">
+                                    Test Connection
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold mb-4">ComfyUI Configuration</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">API URL</label>
+                                    <input type="text" id="comfyui-url" value="http://localhost:8188" 
+                                        class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600">
+                                </div>
+                                <button onclick="testComfyUI()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg">
+                                    Test Connection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
