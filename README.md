@@ -199,3 +199,5 @@ AUTH_REPLICATE_API_TOKEN="Your Replicate token"
 If you fork the project you will be able to modify the code to use the Stable Diffusion technology of your choice (local, open-source, proprietary, your custom HF Space etc).
 
 It would even be something else, such as Dall-E.
+#   c a n d y - c r u c i b l e - c o m i c - f o r g e  
+ 
