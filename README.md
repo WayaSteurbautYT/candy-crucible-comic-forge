@@ -1,203 +1,415 @@
----
-title: AI Comic Factory
-emoji: 👩‍🎨
-colorFrom: red
-colorTo: yellow
-sdk: docker
-pinned: true
-app_port: 3000
-disable_embedding: false
-short_description: Create your own AI comic with a single prompt
-hf_oauth: true
-hf_oauth_expiration_minutes: 43200
-hf_oauth_scopes: [inference-api]
+# 🍬 **CANDY CRUCIBLE COMIC FORGE - AI TOOLKIT EDITION**
+
+**The Ultimate Sweet Apocalypse Comic Generation Studio with Advanced AI Toolkit Integration**
+
 ---
 
-# AI Comic Factory
+## 🎯 **What is Candy Crucible Comic Forge?**
 
-Last release: AI Comic Factory 1.2
+A revolutionary **AI Toolkit-powered** web-based comic generation platform that transforms your stories into stunning Sweet Apocalypse visual narratives. Featuring advanced LoRA training, RAG context memory, and one-click installation with Pinokio-style magic.
 
-The AI Comic Factory has an official website: [aicomicfactory.app](https://aicomicfactory.app)
+---
 
-For more information about my other projects please check [linktr.ee/FLNGR](https://linktr.ee/FLNGR).
+## 🚀 **Enhanced Features**
 
-## Funding
+### **🤖 AI Toolkit Integration**
+- **Advanced Training**: LoRA, Fine-Tuning, Textual Inversion, DreamBooth
+- **Multiple Models**: FLUX Dev, SDXL, Stable Diffusion 1.5
+- **Professional Workflows**: Industry-standard training pipelines
+- **Real-time Monitoring**: Live progress tracking and quality control
 
-If you like the AI Comic Factory, let me know!
-I am always creating new spaces and exploring new ideas for demos, meaning I don't have much time to take care of all of them (I wish I could clone myself or ask robots to do it).
+### **🍬 Sweet Apocalypse Universe**
+- **World-Building Rules**: Bruges-infected setting with candy mutations
+- **Character Consistency**: Lucas (immune), Clara (transformed) with fixed seeds
+- **Style Lock System**: Enforces dark-sweet aesthetic automatically
+- **Mutation Types**: Crystalline, candy, emotional, twisted variations
 
-If you appreciate the AI Comic Factory and would like to leave a tip, that would be very kind 🫶
+### **⚡ One-Click Magic**
+- **Pinokio-Style Installer**: Beautiful GUI with automatic setup
+- **Zero Configuration**: Everything works out of the box
+- **Cross-Platform**: Windows, macOS, Linux support
+- **Cloud Ready**: Deploy to Hugging Face, Replicate, or Docker
 
-<a href="https://www.buymeacoffee.com/flngr" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+---
 
-## Running the project at home
+## 🎨 **Enhanced Web Interface**
 
-First, I would like to highlight that everything is open-source (see [here](https://huggingface.co/spaces/jbilcke-hf/ai-comic-factory/tree/main), [here](https://huggingface.co/spaces/jbilcke-hf/VideoChain-API/tree/main), [here](https://huggingface.co/spaces/hysts/SD-XL/tree/main), [here](https://github.com/huggingface/text-generation-inference)).
+### **🌟 Modern Design**
+- **Candy Crucible Theme**: Pink-purple-cyan gradient aesthetics
+- **Mutation Borders**: Crystalline visual effects
+- **Glowing Elements**: Pulse animations and transitions
+- **Responsive Layout**: Works perfectly on desktop and mobile
 
-However the project isn't a monolithic Space that can be duplicated and ran immediately:
-it requires various components to run for the frontend, backend, LLM, SDXL etc.
+### **📑 Tabbed Workflow**
+1. **🎬 Generate**: Story input and comic generation
+2. **🤖 AI Toolkit Training**: Advanced professional training
+3. **🍬 Sweet Apocalypse Training**: Universe-specific style training
+4. **🖼️ Models**: Manage all your trained models
+5. **⚙️ Settings**: Configure all services
 
-If you try to duplicate the project, open the `.env` you will see it requires some variables.
+---
 
-Provider config:
-- `LLM_ENGINE`: can be one of `INFERENCE_API`, `INFERENCE_ENDPOINT`, `OPENAI`, `GROQ`, `ANTHROPIC`
-- `RENDERING_ENGINE`: can be one of: "INFERENCE_API", "INFERENCE_ENDPOINT", "REPLICATE", "VIDEOCHAIN", "OPENAI" for now, unless you code your custom solution
+## 🧠 **AI Training Capabilities**
 
-Auth config:
-- `AUTH_HF_API_TOKEN`:  if you decide to use Hugging Face for the LLM engine (inference api model or a custom inference endpoint)
-- `AUTH_OPENAI_API_KEY`: to use OpenAI for the LLM engine
-- `AUTH_GROQ_API_KEY`: to use Groq for the LLM engine
-- `AUTH_ANTHROPIC_API_KEY`: to use Anthropic (Claude) for the LLM engine
-- `AUTH_VIDEOCHAIN_API_TOKEN`: secret token to access the VideoChain API server
-- `AUTH_REPLICATE_API_TOKEN`: in case you want to use Replicate.com
-
-Rendering config:
-- `RENDERING_HF_INFERENCE_ENDPOINT_URL`: necessary if you decide to use a custom inference endpoint
-- `RENDERING_REPLICATE_API_MODEL_VERSION`: url to the VideoChain API server
-- `RENDERING_HF_INFERENCE_ENDPOINT_URL`: optional, default to nothing
-- `RENDERING_HF_INFERENCE_API_BASE_MODEL`: optional, defaults to "stabilityai/stable-diffusion-xl-base-1.0"
-- `RENDERING_HF_INFERENCE_API_REFINER_MODEL`: optional, defaults to "stabilityai/stable-diffusion-xl-refiner-1.0"
-- `RENDERING_REPLICATE_API_MODEL`: optional, defaults to "stabilityai/sdxl"
-- `RENDERING_REPLICATE_API_MODEL_VERSION`: optional, in case you want to change the version
-
-Language model config (depending on the LLM engine you decide to use):
-- `LLM_HF_INFERENCE_ENDPOINT_URL`: "<use your own>"
-- `LLM_HF_INFERENCE_API_MODEL`: "HuggingFaceH4/zephyr-7b-beta"
-- `LLM_OPENAI_API_BASE_URL`: "https://api.openai.com/v1"
-- `LLM_OPENAI_API_MODEL`: "gpt-4-turbo"
-- `LLM_GROQ_API_MODEL`: "mixtral-8x7b-32768"
-- `LLM_ANTHROPIC_API_MODEL`: "claude-3-opus-20240229"
-
-In addition, there are some community sharing variables that you can just ignore.
-Those variables are not required to run the AI Comic Factory on your own website or computer
-(they are meant to create a connection with the Hugging Face community,
-and thus only make sense for official Hugging Face apps):
-- `NEXT_PUBLIC_ENABLE_COMMUNITY_SHARING`: you don't need this
-- `COMMUNITY_API_URL`: you don't need this
-- `COMMUNITY_API_TOKEN`: you don't need this
-- `COMMUNITY_API_ID`: you don't need this
-
-Please read the `.env` default config file for more informations.
-To customise a variable locally, you should create a `.env.local`
-(do not commit this file as it will contain your secrets).
-
--> If you intend to run it with local, cloud-hosted and/or proprietary models **you are going to need to code 👨‍💻**.
-
-## The LLM API (Large Language Model)
-
-Currently the AI Comic Factory uses [zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) through an [Inference Endpoint](https://huggingface.co/docs/inference-endpoints/index).
-
-You have multiple options:
-
-### Option 1: Use an Inference API model
-
-This is a new option added recently, where you can use one of the models from the Hugging Face Hub. By default we suggest to use [zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) as it will provide better results than the 7b model.
-
-To activate it, create a `.env.local` configuration file:
-
-```bash
-LLM_ENGINE="INFERENCE_API"
-
-HF_API_TOKEN="Your Hugging Face token"
-
-# "HuggingFaceH4/zephyr-7b-beta" is used by default, but you can change this
-# note: You should use a model able to generate JSON responses,
-# so it is storngly suggested to use at least the 34b model
-HF_INFERENCE_API_MODEL="HuggingFaceH4/zephyr-7b-beta"
+### **🤖 AI Toolkit Professional Training**
+```typescript
+// Advanced training configuration
+const trainingConfig = {
+  job: 'train',
+  processes: [{
+    type: 'lora_hack',  // or 'fine-tune', 'textual-inversion', 'dreambooth'
+    config: {
+      model: 'flux-dev',
+      training_images: images,
+      epochs: 100,
+      batch_size: 4,
+      learning_rate: 1e-4,
+      resolution: 1024
+    }
+  }]
+};
 ```
 
-### Option 2: Use an Inference Endpoint URL
+### **🍬 Sweet Apocalypse Style Training**
+- **Character Training**: Consistent Lucas/Clara appearances
+- **Environment Training**: Bruges-infected architecture
+- **Mutation Training**: Crystalline and candy effects
+- **Universe Rules**: Automatic canon enforcement
 
-If you would like to run the AI Comic Factory on a private LLM running on the Hugging Face Inference Endpoint service, create a `.env.local` configuration file:
+### **🎯 Training Types**
+- **LoRA Training**: Fast style adaptation (4-30 images)
+- **Fine Tuning**: Full model customization (50+ images)
+- **Textual Inversion**: Concept training (10-20 images)
+- **DreamBooth**: Subject training (5-10 images)
 
+---
+
+## 🌐 **Deployment Options**
+
+### **🏠 Local Installation**
 ```bash
-LLM_ENGINE="INFERENCE_ENDPOINT"
+# One-click install with GUI
+python app.py
 
-HF_API_TOKEN="Your Hugging Face token"
-
-HF_INFERENCE_ENDPOINT_URL="path to your inference endpoint url"
+# Or manual setup
+pip install -r requirements.txt
+python server.enhanced.py
 ```
 
-To run this kind of LLM locally, you can use [TGI](https://github.com/huggingface/text-generation-inference) (Please read [this post](https://github.com/huggingface/text-generation-inference/issues/726) for more information about the licensing).
-
-### Option 3: Use an OpenAI API Key
-
-This is a new option added recently, where you can use OpenAI API with an OpenAI API Key.
-
-To activate it, create a `.env.local` configuration file:
-
+### **☁️ Cloud Deployment**
 ```bash
-LLM_ENGINE="OPENAI"
+# Hugging Face Spaces
+python deploy_huggingface.py
 
-# default openai api base url is: https://api.openai.com/v1
-LLM_OPENAI_API_BASE_URL="A custom OpenAI API Base URL if you have some special privileges"
+# Replicate Platform
+python deploy_replicate.py
 
-LLM_OPENAI_API_MODEL="gpt-4-turbo"
-
-AUTH_OPENAI_API_KEY="Yourown OpenAI API Key"
-```
-### Option 4: (new, experimental) use Groq
-
-```bash
-LLM_ENGINE="GROQ"
-
-LLM_GROQ_API_MODEL="mixtral-8x7b-32768"
-
-AUTH_GROQ_API_KEY="Your own GROQ API Key"
-```
-### Option 5: (new, experimental) use Anthropic (Claude)
-
-```bash
-LLM_ENGINE="ANTHROPIC"
-
-LLM_ANTHROPIC_API_MODEL="claude-3-opus-20240229"
-
-AUTH_ANTHROPIC_API_KEY="Your own ANTHROPIC API Key"
+# Docker Container
+docker build -f Dockerfile.web -t candy-crucible .
+docker run -p 8080:8080 candy-crucible
 ```
 
-### Option 6: Fork and modify the code to use a different LLM system
+### **🔧 Service Configuration**
+- **Ollama**: `http://localhost:11434` (Text generation)
+- **ComfyUI**: `http://localhost:8188` (Image generation)
+- **AI Toolkit**: `http://localhost:8000` (Model training)
 
-Another option could be to disable the LLM completely and replace it with another LLM protocol and/or provider (eg. Claude, Replicate), or a human-generated story instead (by returning mock or static data).
+---
 
-### Notes
+## 🎮 **Usage Guide**
 
-It is possible that I modify the AI Comic Factory to make it easier in the future (eg. add support for Claude or Replicate)
+### **🚀 Quick Start**
+1. **Run Installer**: `python app.py`
+2. **Click Install**: "🚀 One-Click Install"
+3. **Launch Web UI**: "🎮 Launch Web UI"
+4. **Open Browser**: http://localhost:8080
 
-## The Rendering API
+### **🤖 AI Toolkit Training**
+1. **Switch to "AI Toolkit Training" tab**
+2. **Select Training Type**: LoRA, Fine-Tune, etc.
+3. **Choose Base Model**: FLUX Dev, SDXL, etc.
+4. **Upload Images**: 10-100 training images
+5. **Configure Settings**: Epochs, batch size, learning rate
+6. **Start Training**: Monitor real-time progress
 
-This API is used to generate the panel images. This is an API I created for my various projects at Hugging Face.
+### **🍬 Sweet Apocalypse Training**
+1. **Switch to "Sweet Apocalypse Training" tab**
+2. **Choose Style Type**: Character, Environment, or Mutation
+3. **Upload Your Art**: Sweet Apocalypse style images
+4. **Add Description**: Detail your artistic vision
+5. **Train Style**: Universe-aware LoRA creation
 
-I haven't written documentation for it yet, but basically it is "just a wrapper ™" around other existing APIs:
+### **📖 Comic Generation**
+1. **Upload Story**: PDF, Markdown, DOCX, or write custom prompt
+2. **Select Style**: Sweet Apocalypse v1/v2 or your trained LoRA
+3. **Configure Pages**: 2-8 pages with 4 panels each
+4. **Generate**: Watch real-time Sweet Apocalypse creation
+5. **Export**: Download complete comic with metadata
 
-- The [hysts/SD-XL](https://huggingface.co/spaces/hysts/SD-XL?duplicate=true) Space by [@hysts](https://huggingface.co/hysts)
-- And other APIs for making videos, adding audio etc.. but you won't need them for the AI Comic Factory
+---
 
-### Option 1: Deploy VideoChain yourself
+## 🔥 **Advanced Features**
 
-You will have to [clone](https://huggingface.co/spaces/jbilcke-hf/VideoChain-API?duplicate=true) the [source-code](https://huggingface.co/spaces/jbilcke-hf/VideoChain-API/tree/main)
+### **🧠 RAG Context System**
+```typescript
+// Semantic story memory with Sweet Apocalypse awareness
+const context = await ragSystem.getContext(
+  "Lucas emotional transformation in Bruges",
+  5  // Relevant story chunks
+);
 
-Unfortunately, I haven't had the time to write the documentation for VideoChain yet.
-(When I do I will update this document to point to the VideoChain's README)
-
-
-### Option 2: Use Replicate
-
-To use Replicate, create a `.env.local` configuration file:
-
-```bash
-RENDERING_ENGINE="REPLICATE"
-
-RENDERING_REPLICATE_API_MODEL="stabilityai/sdxl"
-
-RENDERING_REPLICATE_API_MODEL_VERSION="da77bc59ee60423279fd632efb4795ab731d9e3ca9705ef3341091fb989b7eaf"
-
-AUTH_REPLICATE_API_TOKEN="Your Replicate token"
+// Character consistency tracking
+const lucasScenes = await ragSystem.searchByCharacter("Lucas");
 ```
 
-### Option 3: Use another SDXL API
+### **⚡ Batch Generation Pipeline**
+```typescript
+// Process 4 panels simultaneously with mutation awareness
+const batchJob = {
+  panels: panelRequests,
+  batchSize: 4,
+  sweetApocalypseConfig: universeRules,
+  qualityControl: true
+};
 
-If you fork the project you will be able to modify the code to use the Stable Diffusion technology of your choice (local, open-source, proprietary, your custom HF Space etc).
+await comfyUIClient.batchGenerate(batchJob);
+```
 
-It would even be something else, such as Dall-E.
-#   c a n d y - c r u c i b l e - c o m i c - f o r g e  
- 
+### **🎨 Quality Control Loop**
+```typescript
+// Auto-regenerate if mutation quality is low
+const analysis = await analyzeSweetApocalypseImage(
+  imageUrl, 
+  originalPrompt,
+  mutationRules
+);
+
+if (analysis.mutationQuality < 7) {
+  await regenerateWithEnhancedMutation();
+}
+```
+
+---
+
+## 📊 **Performance & Hardware**
+
+### **🎮 Recommended Specifications**
+- **GPU**: RTX 4060+ (12GB+ VRAM for best results)
+- **CPU**: Modern multi-core processor
+- **RAM**: 32GB+ for training, 16GB+ for generation
+- **Storage**: 100GB+ for models and datasets
+
+### **⚡ Speed Benchmarks**
+- **LoRA Training**: 10-30 minutes (20 images)
+- **Comic Generation**: 5-15 minutes (4-page issue)
+- **Style Inference**: 10-30 seconds per panel
+- **Batch Processing**: 2-4 panels simultaneously
+
+---
+
+## 🎨 **Sweet Apocalypse Universe**
+
+### **🌍 World-Building Configuration**
+```typescript
+const universeRules = {
+  setting: 'bruges-infected',     // Infected Bruges, Belgium
+  tone: 'dark-sweet',            // Tragic yet beautiful
+  mutationRules: [
+    'candy-like crystallization',
+    'pastel color corruption',
+    'emotional manifestation',
+    'childhood innocence twisted'
+  ]
+};
+```
+
+### **🎭 Character System**
+```typescript
+const characters = {
+  lucas: {
+    seed: 12345,              // Fixed for consistency
+    description: 'Teenage boy, immune to mutations',
+    appearance: 'Dark hair, haunted eyes, tattered clothes'
+  },
+  clara: {
+    seed: 67890,
+    description: 'Young girl, partially transformed',
+    appearance: 'Crystalline skin, candy-colored tears'
+  }
+};
+```
+
+### **🔒 Style Lock Enforcement**
+```typescript
+const styleLock = {
+  basePrompt: 'sweetapoc_style, dark tragic sweetness, candy apocalypse realism',
+  negativePrompt: 'anime, oversaturated, childish, low detail, 3D render',
+  requiredTags: ['mutation', 'bruges', 'apocalypse', 'sweet'],
+  forbiddenTags: ['happy', 'normal', 'clean', 'bright']
+};
+```
+
+---
+
+## 🛠️ **Technical Architecture**
+
+### **🏗️ System Components**
+```
+Candy Crucible Comic Forge/
+├── 🎨 Frontend (Enhanced HTML/CSS/JS)
+├── 🧠 Backend (FastAPI + Python)
+├── 🤖 AI Toolkit Integration
+├── 🦙 Ollama (Text Generation)
+├── 🎨 ComfyUI (Image Generation)
+├── 💾 Storage (Models + Outputs)
+└── 🚀 Deployment (Multiple Options)
+```
+
+### **🔌 Enhanced API Endpoints**
+```typescript
+// Core generation
+POST /api/generate                    // Generate Sweet Apocalypse comic
+POST /api/train/ai-toolkit           // AI Toolkit professional training
+POST /api/train/sweet-apocalypse     // Universe-specific training
+
+// Model management
+GET  /api/models                     // All available models
+GET  /api/sweet-apocalypse/config    // Universe configuration
+
+// Service testing
+POST /api/test/ollama                // Test Ollama connection
+POST /api/test/comfyui               // Test ComfyUI connection
+POST /api/test/ai-toolkit            // Test AI Toolkit connection
+
+// Job management
+GET  /api/job/{id}                   // Training/generation status
+GET  /api/export/{id}                // Export with metadata
+```
+
+---
+
+## 🎯 **Training Recommendations**
+
+### **🤖 AI Toolkit Professional Training**
+- **LoRA**: 20-50 images, 100 epochs, 1e-4 learning rate
+- **Fine-Tuning**: 50+ images, 50 epochs, 5e-5 learning rate
+- **Textual Inversion**: 10-20 images, 500 steps, 1e-3 learning rate
+- **DreamBooth**: 5-10 images, 1000 steps, 2e-4 learning rate
+
+### **🍬 Sweet Apocalypse Training**
+- **Character**: 15-25 images, consistent lighting/angles
+- **Environment**: 25-40 images, various architectural elements
+- **Mutation**: 30-50 images, detail shots of effects
+- **General**: 20-35 images, diverse Sweet Apocalypse scenes
+
+### **✅ Best Practices**
+- **Image Quality**: High resolution, good lighting
+- **Consistency**: Maintain style across all images
+- **Variety**: Different angles and compositions
+- **No Text**: Avoid watermarks or text elements
+- **Format**: JPG, PNG, WebP supported
+
+---
+
+## 🔮 **Future Roadmap**
+
+### **🚀 Coming Updates**
+- [ ] **Voice Integration**: Text-to-speech for dialogue
+- [ ] **Animation**: Panel transition effects
+- [ ] **Collaboration**: Multi-user story editing
+- [ ] **Marketplace**: Share Sweet Apocalypse LoRAs
+- [ ] **Mobile App**: On-the-go comic generation
+
+### **🧠 AI Enhancements**
+- [ ] **Self-Critique**: Advanced quality analysis
+- [ ] **Style Transfer**: Automatic art adaptation
+- [ ] **Character Evolution**: Dynamic development
+- [ ] **World Building**: Automatic universe expansion
+- [ ] **Mutation AI**: Intelligent mutation generation
+
+---
+
+## 🤝 **Integration with Your AI Toolkit**
+
+### **🔗 Seamless Connection**
+- **API Integration**: Direct communication with AI Toolkit
+- **Job Monitoring**: Real-time progress tracking
+- **Model Management**: Automatic model registration
+- **Quality Control**: Enhanced validation loops
+
+### **🎨 Sweet Apocalypse Enhancement**
+- **Universe Rules**: Automatically applied to all training
+- **Style Prompts**: Pre-configured for consistent results
+- **Character Seeds**: Fixed for character consistency
+- **Mutation Types**: Categorized for specialized training
+
+---
+
+## 📄 **Installation Guide**
+
+### **🔧 Prerequisites**
+- **Python 3.8+**: Required for all components
+- **GPU**: RTX 3060+ recommended (8GB+ VRAM)
+- **RAM**: 16GB+ minimum, 32GB+ recommended
+- **Storage**: 100GB+ for models and training data
+
+### **📦 Installation Steps**
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/candy-crucible-comic-forge
+cd candy-crucible-comic-forge
+
+# 2. Run the Pinokio-style installer
+python app.py
+
+# 3. Click "🚀 One-Click Install"
+
+# 4. Wait for automatic setup (2-5 minutes)
+
+# 5. Launch web interface
+python server.enhanced.py
+
+# 6. Open http://localhost:8080
+```
+
+### **🔍 What Gets Installed**
+- **AI Toolkit**: Professional training suite
+- **Ollama**: Local text model server
+- **ComfyUI**: Advanced image generation
+- **Base Models**: Qwen2.5, FLUX Dev, Sweet Apocalypse LoRAs
+- **Dependencies**: All required Python packages
+
+---
+
+## 🍬 **Ready to Forge Your Candy Apocalypse?**
+
+### **🎯 Perfect For**
+- **Comic Creators**: Professional comic generation
+- **Artists**: Custom style training and application
+- **Storytellers**: Automated narrative-to-visual conversion
+- **Developers**: AI integration and customization
+- **Enthusiasts**: Creative exploration with AI
+
+### **🚀 Getting Started**
+1. **Download**: Get the Candy Crucible Comic Forge
+2. **Install**: One-click automatic setup
+3. **Train**: Create your Sweet Apocalypse style
+4. **Generate**: Produce stunning comic issues
+5. **Share**: Export and share your creations
+
+---
+
+## 🌟 **Why Choose Candy Crucible?**
+
+- **🍬 Sweet**: Beautiful, artistic, emotionally resonant
+- **🔥 Crucible**: Professional-grade AI training and generation
+- **🎨 Comic**: Sequential art storytelling excellence
+- **🏭 Forge**: Industrial-strength reliability and performance
+
+**Where Sweet Apocalypse meets AI Toolkit power, and beautiful crystalline nightmares become visual reality!**
+
+---
+
+*🍬 Built with ❤️ by the Sweet Apocalypse Community*  
+*🤖 Powered by Advanced AI Toolkit Integration*  
+*⚡ Forging the Future of Comic Generation*
