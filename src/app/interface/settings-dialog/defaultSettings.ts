@@ -1,7 +1,7 @@
 import { LLMVendor, RenderingModelVendor, Settings } from "@/types"
 
 export const defaultSettings: Settings = {
-  renderingModelVendor: "REPLICATE" as RenderingModelVendor,
+  renderingModelVendor: "FLUX_MINECRAFT" as RenderingModelVendor,
   renderingUseTurbo: false,
   llmVendor: "GROQ" as LLMVendor,
   huggingFaceOAuth: "",

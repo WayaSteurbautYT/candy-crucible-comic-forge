@@ -18,58 +18,80 @@ export const thegirlnextdoor = The_Girl_Next_Door({
 })
 
 export const komika = localFont({
-  src: "../fonts/Komika-Hand/Komika-Hand.woff2",
+  src: [
+    { path: "../fonts/Komika-Hand/Komika-Hand.woff2", weight: "400" }
+  ],
   variable: "--font-komika"
 })
 
 export const actionman = localFont({
-  src: "../fonts/Action-Man/Action-Man.woff2",
+  src: [
+    { path: "../fonts/Action-Man/Action_Man_Extended-webfont.woff", weight: "400" }
+  ],
   variable: "--font-action-man"
 })
 
 export const karantula = localFont({
-  src: "../fonts/Karantula/Karantula.woff2",
+  src: [
+    { path: "../fonts/Karantula/Karantula.woff2", weight: "400" }
+  ],
   variable: "--font-karantula"
 })
 
 export const manoskope = localFont({
-  src: "../fonts/Manoskope/MANOSKOPE-Bold.woff2",
+  src: [
+    { path: "../fonts/Manoskope/MANOSKOPE-Bold.woff2", weight: "700" }
+  ],
   variable: "--font-manoskope"
 })
 
 export const paeteround = localFont({
-  src: "../fonts/Paete-Round/Paete-Round.woff2",
+  src: [
+    { path: "../fonts/Paete-Round/Paete-Round.woff2", weight: "400" }
+  ],
   variable: "--font-paete-round"
 })
 
 export const qarmic = localFont({
-  src: "../fonts/Qarmic-Sans/Qarmic-Sans-Abridged.woff2",
+  src: [
+    { path: "../fonts/Qarmic-Sans/Qarmic-Sans-Abridged.woff2", weight: "400" }
+  ],
   variable: "--font-qarmic-sans"
 })
 
 export const archrival = localFont({
-  src: "../fonts/SF-Arch-Rival/SF-Arch-Rival.woff2",
+  src: [
+    { path: "../fonts/SF-Arch-Rival/SF-Arch-Rival.woff2", weight: "400" }
+  ],
   variable: "--font-sf-arch-rival"
 })
 
 export const cartoonist = localFont({
-  src: "../fonts/SF-Cartoonist-Hand/SF-Cartoonist-Hand.woff2",
+  src: [
+    { path: "../fonts/SF-Cartoonist-Hand/SF-Cartoonist-Hand.woff2", weight: "400" }
+  ],
   variable: "--font-sf-cartoonist-hand"
 })
 
 export const toontime = localFont({
-  src: "../fonts/SF-Toontime/SF-Toontime.woff2",
+  src: [
+    { path: "../fonts/SF-Toontime/SF-Toontime.woff2", weight: "400" }
+  ],
   variable: "--font-sf-toontime"
 })
 
 export const vtc = localFont({
-  src: "../fonts/VTC-Letterer-Pro/VTC-Letterer-Pro.woff2",
+  src: [
+    { path: "../fonts/VTC-Letterer-Pro/VTC-Letterer-Pro.woff2", weight: "400" }
+  ],
   variable: "--font-vtc-letterer-pro"
 })
 
 
 export const digitalstrip = localFont({
-  src: "../fonts/DigitalStripBB/DigitalStripBB_Reg.woff2",
+  src: [
+    { path: "../fonts/DigitalStripBB/DigitalStripBB_Reg.woff2", weight: "400" }
+  ],
   variable: "--font-digital-strip-bb"
 })
 

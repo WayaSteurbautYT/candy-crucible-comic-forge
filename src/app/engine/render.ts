@@ -6,6 +6,7 @@ import Replicate from "replicate"
 import { RenderRequest, RenderedScene, RenderingEngine, Settings } from "@/types"
 import { generateSeed } from "@/lib/generateSeed"
 import { sleep } from "@/lib/sleep"
+import { renderFluxMinecraftComic } from "./flux-minecraft-render"
 
 const serverRenderingEngine = `${process.env.RENDERING_ENGINE || ""}` as RenderingEngine
 
@@ -87,6 +88,19 @@ export async function newRender({
   const negativePrompt = "speech bubble, caption, subtitle"
 
   // console.log("settings:", JSON.stringify(settings, null, 2))
+
+  // Use FLUX Minecraft Movie model by default or when specified
+  if (!settings.renderingModelVendor || settings.renderingModelVendor === "FLUX_MINECRAFT") {
+    console.log("🎮 Using FLUX Minecraft Movie Model for local generation")
+    return await renderFluxMinecraftComic({
+      prompt,
+      width,
+      height,
+      nbFrames,
+      withCache,
+      settings
+    })
+  }
 
   if (
     settings.renderingModelVendor === "OPENAI" && 

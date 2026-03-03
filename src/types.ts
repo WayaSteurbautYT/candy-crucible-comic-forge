@@ -117,6 +117,7 @@ export type RenderingModelVendor =
   | "OPENAI"
   | "REPLICATE"
   | "HUGGINGFACE"
+  | "FLUX_MINECRAFT"
 
 // LLMVendor = what the user configure in the UI (eg. a dropdown item called default server)
 // LLMEngine = the actual engine to use (eg. hugging face)

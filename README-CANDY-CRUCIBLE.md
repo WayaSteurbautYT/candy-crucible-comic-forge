@@ -23,7 +23,7 @@ A revolutionary **AI Toolkit-powered** web-based comic generation platform that 
 - **Character Consistency**: Lucas (immune), Clara (transformed) with fixed seeds
 - **Style Lock System**: Enforces dark-sweet aesthetic automatically
 - **Mutation Types**: Crystalline, candy, emotional, twisted variations
-
+G
 ### **⚡ One-Click Magic**
 - **Pinokio-Style Installer**: Beautiful GUI with automatic setup
 - **Zero Configuration**: Everything works out of the box
